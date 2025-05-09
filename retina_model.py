@@ -109,9 +109,9 @@ if __name__ == "__main__":
     train_model()
 
     # Predecir una imagen de ejemplo
-    test_image_path = os.path.join(TRAIN_IMG_DIR, "184_left.jpeg")
+    test_image_path = os.path.join(TRAIN_IMG_DIR, "163_left.jpeg")
     if os.path.exists(test_image_path):
         pred = predict_image(test_image_path)
-        print(f"Predicted level for '184_left.jpeg': {pred}")
+        print(f"Predicted level for '163_left.jpeg': {pred}")
     else:
         print(f"Imagen de test no encontrada: {test_image_path}")
