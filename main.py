@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     # Cargar datos
     all_data = pd.read_csv(CSV_PATH)
-    sampled_data = all_data.sample(n=500, random_state=42).reset_index(drop=True)
+    sampled_data = all_data.sample(n=10000, random_state=42).reset_index(drop=True)
 
     buffer = StringIO()
     sampled_data.to_csv(buffer, index=False)
@@ -44,9 +44,9 @@ if __name__ == "__main__":
         print(f"Modelo guardado en {MODEL_PATH}")
 
     # Predicción de ejemplo
-    test_img = os.path.join(TRAIN_IMG_DIR, "163_left.jpeg")
+    test_img = os.path.join(TRAIN_IMG_DIR, "172_left.jpeg")
     if os.path.exists(test_img):
         pred = predict_image(model, test_img)
-        print(f"Predicción para '163_left.jpeg': {pred}")
+        print(f"Predicción para '172_left.jpeg': {pred}")
     else:
         print(f"Imagen no encontrada: {test_img}")

@@ -3,3 +3,6 @@ torchvision
 pandas
 pillow
 tqdm
+fastapi
+uvicorn
+python-multipart
