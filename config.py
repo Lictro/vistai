@@ -12,3 +12,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 IMG_SIZE = 224
 BATCH_SIZE = 32
 EPOCHS = 5
+
+USE_S3 = True
+S3_BUCKET = "retinographies"
+S3_IMAGE_PREFIX = "train"
