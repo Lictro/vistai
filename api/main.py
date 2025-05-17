@@ -46,12 +46,29 @@ async def predict(file: UploadFile = File(...)):
         severity_label = prediction.argmax(dim=1).item()  # Asumiendo que es una clasificación
 
         # Mapa de severidad: mapea los valores numéricos a etiquetas descriptivas
-        severity_map = {0: "leve", 1: "moderada", 2: "grave", 3: "muy grave", 4: "crítica"}
-        severity = severity_map.get(severity_label, "desconocido")  # Si no está en el mapa, devuelve "desconocido"
+        severity_map = {
+            0: "no signs of diabetic retinopathy",
+            1: "mild non-proliferative diabetic retinopathy",
+            2: "moderate non-proliferative diabetic retinopathy",
+            3: "severe non-proliferative diabetic retinopathy",
+            4: "proliferative diabetic retinopathy"
+        }
+        severity = severity_map.get(severity_label, "unknown")  # Si no está en el mapa, devuelve "desconocido"
 
         # Generar una respuesta textual usando CLIP
         # Creamos las descripciones de texto que se pueden asociar con la imagen
-        texts = [f"La severidad de esta retinografía es {severity}."]
+        texts = [
+            f"This retinal image shows {severity}.",
+            f"There are visible features of {severity} in this fundus photo.",
+            f"The severity of diabetic retinopathy is classified as {severity}.",
+            f"This is a case of {severity}.",
+            f"Fundus scan indicating {severity}.",
+            f"The image suggests {severity} based on clinical signs.",
+            f"Retinal signs are consistent with {severity}.",
+            f"DR severity level: {severity}.",
+            f"Findings: {severity}.",
+            f"Diagnosis: {severity}."
+        ]
 
         # Preprocesar la imagen para CLIP
         inputs = processor(text=texts, images=image, return_tensors="pt", padding=True)
